@@ -1,0 +1,29 @@
+div.bg {
+    background-color: rgb(48, 46, 46);
+    min-height: 600px;
+    padding-top: 210px;
+    color: white;
+}
+
+div.bg h3 {
+    font-size: 48px;
+    margin-bottom: 18px;
+}
+
+div.bg p {
+    font-size: 18px;
+    margin-bottom: 38px;
+    font-weight: lighter;
+}
+
+div.bg a {
+    padding: 12px 28px;
+    color: white;
+    background-color: rgb(3, 69, 69);
+    border-radius: 15px;
+    text-decoration: none;
+}
+div.bg a:hover {
+    transition: 0.8s;
+    background-color: rgb(16, 90, 90);
+}
