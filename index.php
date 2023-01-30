@@ -53,7 +53,7 @@
     <section class="chamada">
         <div class="container">
             <div class="row">
-                <div class="col-md-4 text-end">
+                <div class="col-md-4">
                     <h3>Entre em nossa lista!</h3>
                 </div>
                 <div class="col-md-8">
@@ -98,7 +98,70 @@
             </div>
         </div>
     </section>
-
+    <br>
+    <br>
+    <br>
+    <section class="equipe">
+        <h3 class="text-center">Nossa equipe</h3>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="img"></div>
+                        </div>
+                        <div class="col-md-8 offset-md-1">
+                            <h3>Nome Pessoa</h3>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita nisi quam suscipit eveniet quaerat impedit sunt soluta libero consequuntur, repudiandae quia natus quas veniam, nostrum quos dolorem tempore? Optio, facere.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="img"></div>
+                        </div>
+                        <div class="col-md-8 offset-md-1">
+                            <h3>Nome Pessoa</h3>
+                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Est ab consectetur magnam quasi blanditiis minus vel minima explicabo ratione. Placeat itaque quo magni dolorum enim autem quasi officiis ullam ipsa.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <br>
+    <br>
+    <br>
+    <section class="final">
+        <div class="container">
+            <h3 class="text-center">Entre em Contato</h3>
+            <div class="row">
+                <div class="col-md-6 align">
+                    <form method="post">
+                        <div class="mb-3">
+                            <label for="nome" class="form-label">Nome</label>
+                            <input type="text" name="nome" class="form-control" id="nome">
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">E-mail</label>
+                            <input type="email" name="email" class="form-control" id="email">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Mensagem</label>
+                            <textarea name="conteudo" class="form-control"></textarea>
+                        </div>
+                        <button type="submit" name="submit" class="btn btn-primary">Enviar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <br>
+    <br>
+    <footer>
+        <p class="text-center">Todos os direitos reservados!</p>
+    </footer>
 
 <script src="js/bootstrap.min.js"></script>
 </body>
