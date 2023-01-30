@@ -27,3 +27,88 @@ div.bg a:hover {
     transition: 0.8s;
     background-color: rgb(16, 90, 90);
 }
+
+/********* Section Chamada *********/
+
+section.chamada {
+    width: 100%;
+    background-color: rgb(27, 92, 70);
+    padding: 15px 0;
+}
+
+.chamada .col-md-4 h3 {
+    color: white;
+    font-size: 24px;
+    padding-right: 20px;
+    padding-top: 8px;
+}
+
+.chamada form {
+    width: 100%;
+}
+.chamada form input[type="email"] {
+    display: inline-block;
+    width: 75%;
+    height: 48px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding-left: 8px;
+}
+.chamada form input[type="submit"] {
+    display: inline-block;
+    width: 20%;
+    height: 48px;
+    border: 0;
+    background-color: rgb(24, 148, 183);
+}
+.chamada form input[type="submit"]:hover {
+    transition: 0.8s;
+    background-color: rgb(64, 196, 236);
+}
+
+/********* Depoimentos *************/
+
+section.depoimentos {
+    background-color: rgb(230, 225, 225);
+}
+
+section.depoimentos .col-md-12 {
+    padding: 40px 0;  
+}
+
+.depoimentos h3 {
+    color: #4b4b4b;
+    font-weight: lighter;
+    margin-bottom: 16px;
+}
+
+.depoimentos blockquote {
+    color: #1f1e1e;
+    font-size: 18px;
+    line-height: 22px;
+}
+
+/******** Diferenciais  ********/
+
+section.diferenciais {
+    padding-top: 30px;
+}
+
+section.diferenciais .container > h3{
+    font-size: 22px;
+    color: #4b4b4b;
+    margin-bottom: 60px;
+}
+
+.diferenciais .col-md-4 h3{
+    font-size: 19px;
+    color: #1f1e1e;
+    font-weight: normal;
+    padding: 5px 0;
+}
+
+.diferenciais .col-md-4 p {
+    font-size: 16px;
+    line-height: 22px;
+    font-weight: lighter;
+}

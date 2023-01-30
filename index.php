@@ -50,6 +50,54 @@
         </div>
     </section>
 
+    <section class="chamada">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 text-end">
+                    <h3>Entre em nossa lista!</h3>
+                </div>
+                <div class="col-md-8">
+                    <form method="post">
+                        <input type="email" name="email">
+                        <input type="submit" value="Cadastrar!">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="depoimentos">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <h3>depoimentos</h3>
+                    <blockquote>
+                        <p>"Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam temporibus porro accusantium laudantium consequatur, quidem, soluta ratione inventore suscipit perferendis sunt harum quod est dolores quis necessitatibus ipsum expedita nesciunt?"</p>
+                    </blockquote>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="diferenciais text-center">
+        <div class="container">
+            <h3>Conheça nossa empresa!</h3>
+            <div class="row">
+                <div class="col-md-4">
+                    <h3>Lorem Ipsum</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati rerum, reprehenderit non repellendus velit hic ipsa eligendi sed! Harum dicta doloribus aspernatur quod odio error nobis ea, minus architecto nemo!</p>
+                </div>
+                <div class="col-md-4">
+                    <h3>Lorem Ipsum</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati rerum, reprehenderit non repellendus velit hic ipsa eligendi sed! Harum dicta doloribus aspernatur quod odio error nobis ea, minus architecto nemo!</p>
+                </div>
+                <div class="col-md-4">
+                    <h3>Lorem Ipsum</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati rerum, reprehenderit non repellendus velit hic ipsa eligendi sed! Harum dicta doloribus aspernatur quod odio error nobis ea, minus architecto nemo!</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
 
 <script src="js/bootstrap.min.js"></script>
