@@ -97,28 +97,29 @@ $sobre = $sobre->fetch();
         <h3 class="text-center">Nossa equipe</h3>
         <div class="container">
             <div class="row">
+                <?php 
+                    $membros = $pdo->prepare("SELECT * FROM `tb_equipe`");
+                    $membros->execute();
+                    $membros = $membros->fetchAll();
+
+                    foreach ($membros as $key => $value) {
+                ?>
                 <div class="col-md-6">
                     <div class="row">
                         <div class="col-md-3">
                             <div class="img"></div>
                         </div>
                         <div class="col-md-8 offset-md-1">
-                            <h3>Nome Pessoa</h3>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita nisi quam suscipit eveniet quaerat impedit sunt soluta libero consequuntur, repudiandae quia natus quas veniam, nostrum quos dolorem tempore? Optio, facere.</p>
+                            <h3><?php echo $value['nome'] ?></h3>
+                            <p>
+                                <?php echo $value['descricao']; ?>
+                            </p>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="row">
-                        <div class="col-md-3">
-                            <div class="img"></div>
-                        </div>
-                        <div class="col-md-8 offset-md-1">
-                            <h3>Nome Pessoa</h3>
-                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Est ab consectetur magnam quasi blanditiis minus vel minima explicabo ratione. Placeat itaque quo magni dolorum enim autem quasi officiis ullam ipsa.</p>
-                        </div>
-                    </div>
-                </div>
+                <?php
+                    }
+                ?>
             </div>
         </div>
     </section>

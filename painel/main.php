@@ -2,6 +2,12 @@
 $sobre = $pdo->prepare("SELECT * FROM `tb_sobre`");
 $sobre->execute();
 $sobre = $sobre->fetch();
+
+$cadastro = $pdo->prepare("SELECT * FROM `tb_equipe`");
+$cadastro->execute();
+$cadastro = $cadastro->fetch();
+
+
 ?>
 
 <!DOCTYPE html>
@@ -83,6 +89,7 @@ $sobre = $sobre->fetch();
                         <div class="list-group-item">
                             <h3 class="fs-5">Editar HTML</h3>
                             <?php 
+                            if(isset($_POST['submit_sobre'])) {
                                 if(isset($_POST['sucesso_sobre'])) {
                                     $sobre = $_POST['conteudo'];
                                     echo '<div class="alert alert-success" role="alert">O HTML do <b>sobre</b> foi editado com sucesso!</div>';
@@ -93,14 +100,25 @@ $sobre = $sobre->fetch();
                                     $sobre = $pdo->prepare("SELECT * FROM `tb_sobre`");
                                     $sobre->execute();
                                     $sobre = $sobre->fetch();
+                                    header("Location: index.php");
                                 }
+                            }else if(isset($_POST['submit_cadastro'])) {
+                                if(isset($_POST['sucesso_cadastro'])) {
+                                    $nome = $_POST['nome_membro'];
+                                    $descricao = $_POST['descricao_membro'];
+                                    echo '<div class="alert alert-success" role="alert">Cadastro do <b>membro da equipe</b> foi realizado com sucesso!</div>';
+                                    $sql = $pdo->prepare("INSERT INTO `tb_equipe` VALUES (null,?,?)");
+                                    $sql->execute([$nome,$descricao]);
+                                    header("Location: index.php");
+                                }
+                            }
                             ?>
                             <form method="post">
                                 <label class="form-label">HTML</label>
                                 <textarea style="height: 250px;" name="conteudo" class="form-control"><?php echo $sobre['conteudo'] ?></textarea>
                                 <input type="hidden" name="sucesso_sobre" value="">
                                 <br>
-                                <button type="submit" name="submit" class="btn btn-primary">Enviar</button>
+                                <button type="submit" name="submit_sobre" class="btn btn-primary">Enviar</button>
                             </form>
                         </div>
                     </div>
@@ -115,8 +133,9 @@ $sobre = $sobre->fetch();
                                 <input type="text" name="nome_membro" class="form-control">
                                 <label class="fomr-label">Descrição do membro:</label>
                                 <textarea style="height: 150px;" name="descricao_membro" class="form-control"></textarea>
+                                <input type="hidden" name="sucesso_cadastro" value="">
                                 <br>
-                                <button type="submit" name="submit" class="btn btn-primary">Enviar</button>
+                                <button type="submit" name="submit_cadastro" class="btn btn-primary">Enviar</button>
                             </form>
                         </div>
                     </div>
@@ -138,12 +157,21 @@ $sobre = $sobre->fetch();
                                 </tr>
                             </thead>
                             <tbody>
+                                <?php 
+                                    $membros = $pdo->prepare("SELECT * FROM `tb_equipe`");
+                                    $membros->execute();
+                                    $membros = $membros->fetchAll();
+                                    foreach ($membros as $key => $value) {
+                                ?>
                                 <tr>
-                                    <th scope="row">0</th>
-                                    <td>Mark</td>
-                                    <td>#</td>
-                                    <td>#</td>
+                                    <th scope="row"><?php echo $value['id'] ?></th>
+                                    <td><?php echo $value['nome'] ?></td>
+                                    <td>Editar</td>
+                                    <td><a class="del" href="#" id_membro="<?php echo $value['id'] ?>">Deletar</a></td>
                                 </tr>
+                                <?php 
+                                    }
+                                ?>
                             </tbody>
                         </table>
                         </div>
@@ -160,7 +188,7 @@ $sobre = $sobre->fetch();
         //Chamando as funcções.
         clickMenu();
         scrollItem();
-        closeMenu();
+        delteItemTabel();
 
         //Coloca a classe "active" no item do menu clicado.
         function clickMenu() {
@@ -181,20 +209,24 @@ $sobre = $sobre->fetch();
             })
         }
 
-        //Fecha o menu mobile ao clicar em um dos itens.
-        /*
-        function closeMenu() {
-            $('.navbar-toggler-icon').click(function() {
-                $('#primeiro-menu a').click(function() {
-                    $('button.navbar-toggler')
-                    .attr('aria-expanded','false')
-                    .addClass('collapsed');
-                    $('div.collapse .navbar-collapse')
-                    .removeClass('show')
-                })
+        function delteItemTabel() {
+            $('.del').click(function() {
+                let id_membro = $(this).attr('id_membro');
+                let el = $(this);
+                $.ajax({
+                    method:'post',
+                    data: {
+                        'id': id_membro
+                    },
+                    url: 'deletar.php'
+                }).done(function() {
+                        el.parent().parent().remove();
+                    }
+                )
+                return false;
             })
         }
-        */
+
 
     </script>
 </body>
