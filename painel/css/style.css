@@ -2,6 +2,10 @@ body {
     background-color: #ccc;
 }
 
+.top {
+    margin-top: 55px;
+}
+
 .header {
     background-color: #1b5c46;
     padding: 15px 0;

@@ -1,6 +1,10 @@
-<script>
-    import bootstrap from 'bootstrap';
-</script>
+<?php 
+
+$pdo = new PDO("mysql:host=localhost;dbname=projeto_bootstrap",'root','');
+$sobre = $pdo->prepare("SELECT * FROM `tb_sobre`");
+$sobre->execute();
+$sobre = $sobre->fetch();
+?>
 
 <!DOCTYPE html>
 <html lang="pt_Br">
@@ -81,21 +85,9 @@
 
     <section class="diferenciais text-center">
         <div class="container">
-            <h3>Conheça nossa empresa!</h3>
-            <div class="row">
-                <div class="col-md-4">
-                    <h3>Lorem Ipsum</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati rerum, reprehenderit non repellendus velit hic ipsa eligendi sed! Harum dicta doloribus aspernatur quod odio error nobis ea, minus architecto nemo!</p>
-                </div>
-                <div class="col-md-4">
-                    <h3>Lorem Ipsum</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati rerum, reprehenderit non repellendus velit hic ipsa eligendi sed! Harum dicta doloribus aspernatur quod odio error nobis ea, minus architecto nemo!</p>
-                </div>
-                <div class="col-md-4">
-                    <h3>Lorem Ipsum</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati rerum, reprehenderit non repellendus velit hic ipsa eligendi sed! Harum dicta doloribus aspernatur quod odio error nobis ea, minus architecto nemo!</p>
-                </div>
-            </div>
+            <?php 
+                echo $sobre['conteudo'];
+            ?>
         </div>
     </section>
     <br>

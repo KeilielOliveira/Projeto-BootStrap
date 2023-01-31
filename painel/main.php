@@ -1,3 +1,9 @@
+<?php 
+$sobre = $pdo->prepare("SELECT * FROM `tb_sobre`");
+$sobre->execute();
+$sobre = $sobre->fetch();
+?>
+
 <!DOCTYPE html>
 <html lang="pt_Br">
 <head>
@@ -10,7 +16,7 @@
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg bg-body-secondary" data-bs-theme="dark">
+<nav class="navbar fixed-top navbar-expand-lg bg-body-secondary" data-bs-theme="dark">
         <div class="container">
             <a class="navbar-brand" href="#">Logomarca</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
@@ -19,13 +25,13 @@
             <div class="collapse navbar-collapse" id="navbarColor01">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 text-center" id="primeiro-menu">
                     <li class="nav-item">
-                        <a ref_sys="sobre" class="nav-link active" aria-current="page" href="#">Home</a>
+                        <a ref_sys="sobre" class="nav-link active" aria-current="page" href="#">Editar Sobre</a>
                     </li>
                     <li class="nav-item">
-                        <a ref_sys="cadastro" class="nav-link" href="#">Sobre</a>
+                        <a ref_sys="cadastro" class="nav-link" href="#">Cadastrar Equipe</a>
                     </li>
                     <li class="nav-item">
-                        <a ref_sys="lista" class="nav-link" href="#">Contato</a>
+                        <a ref_sys="lista" class="nav-link" href="#">Lista Equipe</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav navbar-right text-center">
@@ -36,7 +42,7 @@
             </div>
         </div>
     </nav>
-
+    <div class="top"></div>
     <header class="header">
         <div class="container">
             <div class="row">
@@ -72,13 +78,27 @@
                     </div>
                 </div>
                 <div class="col-md-9">
-                    <div class="list-group">
+                    <div id="section-sobre" class="list-group">
                         <div class="list-group-item list-group-item-action active">Sobre</div>
                         <div class="list-group-item">
                             <h3 class="fs-5">Editar HTML</h3>
+                            <?php 
+                                if(isset($_POST['sucesso_sobre'])) {
+                                    $sobre = $_POST['conteudo'];
+                                    echo '<div class="alert alert-success" role="alert">O HTML do <b>sobre</b> foi editado com sucesso!</div>';
+                                    $pdo->exec("DELETE FROM `tb_sobre`");
+                                    $sql = $pdo->prepare("INSERT INTO `tb_sobre` VALUES (null,?)");
+                                    $sql->execute([$sobre]);
+                                    //Inseri no textarea o valor dosobre atual.
+                                    $sobre = $pdo->prepare("SELECT * FROM `tb_sobre`");
+                                    $sobre->execute();
+                                    $sobre = $sobre->fetch();
+                                }
+                            ?>
                             <form method="post">
                                 <label class="form-label">HTML</label>
-                                <textarea style="height: 150px;" name="conteudo" class="form-control"></textarea>
+                                <textarea style="height: 250px;" name="conteudo" class="form-control"><?php echo $sobre['conteudo'] ?></textarea>
+                                <input type="hidden" name="sucesso_sobre" value="">
                                 <br>
                                 <button type="submit" name="submit" class="btn btn-primary">Enviar</button>
                             </form>
@@ -86,7 +106,7 @@
                     </div>
                     <br>
                     <br>
-                    <div class="list-group">
+                    <div id="section-cadastro" class="list-group">
                         <div class="list-group-item list-group-item-action active">Cadastrar Equipe</div>
                         <div class="list-group-item">
                             <h3 class="fs-5">Cadastrar</h3>
@@ -102,7 +122,7 @@
                     </div>
                     <br>
                     <br>
-                    <div class="list-group">
+                    <div id="section-lista" class="list-group">
                         <div class="list-group-item list-group-item-action active">Lista de membros</div>
                         <div class="list-group-item">
                             <h3 class="fs-5">Membros da equipe</h3>
@@ -137,16 +157,44 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery.js"></script>
     <script>
+        //Chamando as funcções.
         clickMenu();
+        scrollItem();
+        closeMenu();
+
+        //Coloca a classe "active" no item do menu clicado.
         function clickMenu() {
             $('#primeiro-menu a,#segundo-menu a').click(function() {
                 $('#primeiro-menu a,#segundo-menu a').removeClass('active');
                 $('#primeiro-menu a[ref_sys='+$(this).attr('ref_sys')+']').addClass('active');
                 $('#segundo-menu a[ref_sys='+$(this).attr('ref_sys')+']').addClass('active');
                 return false;
-
             })
         }
+
+        //Faz o scroll da pagina rolar até a seção correspondente ao item clicado.
+        function scrollItem() {
+            $('#primeiro-menu a,#segundo-menu a').click(function() {
+                let ref = '#section-'+$(this).attr('ref_sys');
+                let offset = $(ref).offset().top;
+                $('html,body').animate({'scrollTop':offset-55});
+            })
+        }
+
+        //Fecha o menu mobile ao clicar em um dos itens.
+        /*
+        function closeMenu() {
+            $('.navbar-toggler-icon').click(function() {
+                $('#primeiro-menu a').click(function() {
+                    $('button.navbar-toggler')
+                    .attr('aria-expanded','false')
+                    .addClass('collapsed');
+                    $('div.collapse .navbar-collapse')
+                    .removeClass('show')
+                })
+            })
+        }
+        */
 
     </script>
 </body>
