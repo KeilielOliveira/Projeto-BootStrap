@@ -1,11 +1,3 @@
-<?php 
-
-$pdo = new PDO("mysql:host=localhost;dbname=projeto_bootstrap",'root','');
-$sobre = $pdo->prepare("SELECT * FROM `tb_sobre`");
-$sobre->execute();
-$sobre = $sobre->fetch();
-?>
-
 <!DOCTYPE html>
 <html lang="pt_Br">
 <head>
@@ -85,9 +77,21 @@ $sobre = $sobre->fetch();
 
     <section class="diferenciais text-center">
         <div class="container">
-            <?php 
-                echo $sobre['conteudo'];
-            ?>
+            <h3>Conheça nossa empresa!</h3>
+            <div class="row">
+                <div class="col-md-4">
+                    <h3>Lorem Ipsum</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati rerum, reprehenderit non repellendus velit hic ipsa eligendi sed! Harum dicta doloribus aspernatur quod odio error nobis ea, minus architecto nemo!</p>
+                </div>
+                <div class="col-md-4">
+                    <h3>Lorem Ipsum</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati rerum, reprehenderit non repellendus velit hic ipsa eligendi sed! Harum dicta doloribus aspernatur quod odio error nobis ea, minus architecto nemo!</p>
+                </div>
+                <div class="col-md-4">
+                    <h3>Lorem Ipsum</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati rerum, reprehenderit non repellendus velit hic ipsa eligendi sed! Harum dicta doloribus aspernatur quod odio error nobis ea, minus architecto nemo!</p>
+                </div>
+            </div>
         </div>
     </section>
     <br>
@@ -97,29 +101,33 @@ $sobre = $sobre->fetch();
         <h3 class="text-center">Nossa equipe</h3>
         <div class="container">
             <div class="row">
-                <?php 
-                    $membros = $pdo->prepare("SELECT * FROM `tb_equipe`");
-                    $membros->execute();
-                    $membros = $membros->fetchAll();
-
-                    foreach ($membros as $key => $value) {
-                ?>
                 <div class="col-md-6">
                     <div class="row">
                         <div class="col-md-3">
                             <div class="img"></div>
                         </div>
                         <div class="col-md-8 offset-md-1">
-                            <h3><?php echo $value['nome'] ?></h3>
+                            <h3>Nome da Pessoa</h3>
                             <p>
-                                <?php echo $value['descricao']; ?>
+                                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quia delectus officia ipsa aliquam quas debitis! Perferendis nesciunt voluptates id, eaque consequuntur, temporibus ullam odio impedit ab autem expedita, et adipisci?
                             </p>
                         </div>
                     </div>
                 </div>
-                <?php
-                    }
-                ?>
+
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="img"></div>
+                        </div>
+                        <div class="col-md-8 offset-md-1">
+                            <h3>Nome da Pessoa</h3>
+                            <p>
+                                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quia delectus officia ipsa aliquam quas debitis! Perferendis nesciunt voluptates id, eaque consequuntur, temporibus ullam odio impedit ab autem expedita, et adipisci?
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
