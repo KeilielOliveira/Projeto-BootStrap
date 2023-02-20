@@ -10,26 +10,29 @@
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-lg bg-body-secondary" data-bs-theme="dark">
+    <nav class="fixed-top navbar navbar-expand-lg bg-body-secondary" data-bs-theme="dark">
         <div class="container-fluid">
         <a class="navbar-brand" href="#">Logomarca</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarColor01">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Sobre</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="painel/index.html">Painel de controle do Site</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Contato</a>
-            </li>
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0" id="menu">
+                <li class="nav-item">
+                    <a ref_sys="home" class="nav-link active" aria-current="page" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a ref_sys="empresa" class="nav-link" href="#">Sobre a Empresa</a>
+                </li>
+                <li class="nav-item">
+                    <a ref_sys="sobre" class="nav-link" href="#">Sobre</a>
+                </li>
+                <li class="nav-item">
+                    <a ref_sys="contato" class="nav-link" href="#">Contato</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="painel/index.html">Painel de controle do Site</a>
+                </li>
             </ul>
             <form class="d-flex" role="search">
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
@@ -39,7 +42,7 @@
         </div>
     </nav>
 
-    <section class="banner">
+    <section id="section-home" class="banner">
         <div class="bg text-center">
             <div class="container">
                 <h3>Logomarca</h3>
@@ -65,7 +68,7 @@
         </div>
     </section>
 
-    <section class="depoimentos">
+    <section id="section-empresa" class="depoimentos">
         <div class="container">
             <div class="row">
                 <div class="col-md-12 text-center">
@@ -100,7 +103,7 @@
     <br>
     <br>
     <br>
-    <section class="equipe">
+    <section id="section-sobre" class="equipe">
         <h3 class="text-center">Nossa equipe</h3>
         <div class="container">
             <div class="row">
@@ -137,7 +140,7 @@
     <br>
     <br>
     <br>
-    <section class="final">
+    <section id="section-contato" class="final">
         <div class="container">
             <h3 class="text-center">Entre em Contato</h3>
             <div class="row">
@@ -168,5 +171,28 @@
     </footer>
 
 <script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.js"></script>
+<script>
+    scrollItem();
+    clickMenu();
+
+
+    function clickMenu() {
+            $('#menu a').click(function() {
+                $('#menu a').removeClass('active');
+                $('#menu a[ref_sys='+$(this).attr('ref_sys')+']').addClass('active');
+                return false;
+            })
+        }
+
+    //Faz o scroll da pagina rolar até a seção correspondente ao item clicado.
+    function scrollItem() {
+    $('#menu a').click(function() {
+        let ref = '#section-'+$(this).attr('ref_sys');
+        let offset = $(ref).offset().top;
+        $('html,body').animate({'scrollTop':offset-55});
+    })
+    }
+</script>
 </body>
 </html>
